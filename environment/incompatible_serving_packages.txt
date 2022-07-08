@@ -1,0 +1,5 @@
+# dbus-python==1.2.16
+# pycurl==7.43.0.6
+# PyGObject==3.36.0
+# python-apt==2.0.0+ubuntu0.20.4.7
+# tensorflow==2.5.0

@@ -12,6 +12,7 @@
 
 
 import copy
+
 import torch
 from torch import nn
 
@@ -20,7 +21,10 @@ from minifastreid.modeling.backbones import build_backbone
 from minifastreid.modeling.backbones.resnet import Bottleneck
 from minifastreid.modeling.heads import build_heads
 from minifastreid.modeling.losses import *
+from .build import META_ARCH_REGISTRY
 
+
+@META_ARCH_REGISTRY.register()
 class MGN(nn.Module):
     def __init__(self, cfg):
         super().__init__()
@@ -197,6 +201,9 @@ class MGN(nn.Module):
         b32_pool_feat     = b32_outputs['features']
         b33_pool_feat     = b33_outputs['features']
         # fmt: on
+
+        # Log prediction accuracy
+        log_accuracy(pred_class_logits, gt_labels)
 
         b22_pool_feat = torch.cat((b21_pool_feat, b22_pool_feat), dim=1)
         b33_pool_feat = torch.cat((b31_pool_feat, b32_pool_feat, b33_pool_feat), dim=1)
