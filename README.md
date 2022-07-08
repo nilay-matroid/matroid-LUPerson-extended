@@ -5,7 +5,7 @@ Final appearance search LUPerson code to be ported to Matroid
 
 ## Environment
 
-**Conda**
+**Conda** \
 Set up a seperate conda environment first for isolation and clean installation.
 ```bash
 conda create --name matroid-serving python=3.7
