@@ -4,7 +4,7 @@ import os
 import json
 from google.protobuf import text_format as pbtf
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-from luperson_inference.LUPerson_inference import LUPersonInferenceModel
+from luperson_inference.LUPerson_inference import TritonPythonModel
 
 if __name__ == '__main__':
     import argparse
@@ -23,7 +23,7 @@ if __name__ == '__main__':
     dummy_model_config['output'] = []
     dummy_model_config['output'].append({'name': "OUTPUT0", 'data_type': 'TYPE_FP32', 'dims': [-1, 2048]})
 
-    inference_model = LUPersonInferenceModel()
+    inference_model = TritonPythonModel()
     inference_model.initialize(args={'model_config': json.dumps(dummy_model_config, indent=2)})
 
     query_feat = inference_model.get_embeddings(image_array)

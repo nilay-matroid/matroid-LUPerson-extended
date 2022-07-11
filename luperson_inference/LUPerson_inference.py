@@ -12,7 +12,7 @@ import os
 import triton_python_backend_utils as pb_utils
 import json
 
-class LUPersonInferenceModel:
+class TritonPythonModel:
     def initialize(self, args):
         """
         ----------
