@@ -4,7 +4,7 @@ import os
 import json
 from google.protobuf import text_format as pbtf
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
-from luperson_inference.LUPerson_inference import TritonPythonModel
+from luperson_inference.model import TritonPythonModel
 
 if __name__ == '__main__':
     import argparse
