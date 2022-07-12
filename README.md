@@ -121,7 +121,6 @@ conda activate matroid-serving
 Set up the matroid-serving environment as instructed before.
 ```bash
 gdown 1jiC3gEYdbxd7IKSU5V_4PnNwtsxe99n8
-cd matroid-LUPerson-extended
 python3 tests/simple_e2e_test.py
 ```
 
