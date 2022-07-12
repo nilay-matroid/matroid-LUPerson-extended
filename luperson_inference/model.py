@@ -41,6 +41,7 @@ class TritonPythonModel:
         self.cfg.merge_from_file(self.config_file)
         self.cfg.defrost()
         self.cfg.MODEL.BACKBONE.PRETRAIN = False
+        self.cfg.MODEL.WEIGHTS = os.path.join(os.path.dirname(os.path.dirname(os.path.realpath(__file__))), 'model_final.pth')
         self.model = build_model(self.cfg)
         self.transform = self.build_transforms()
         self.model.eval()

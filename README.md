@@ -116,3 +116,50 @@ echo "export PYTHONPATH=\"${PYTHONPATH}:/home/ubuntu/Nilay/PersonReIDModels/pyth
 source ~/.bashrc
 conda activate matroid-serving
 ```
+
+## Testing without docker 
+Set up the matroid-serving environment as instructed before.
+```bash
+cd ..
+gdown 1jiC3gEYdbxd7IKSU5V_4PnNwtsxe99n8
+cd matroid-LUPerson-extended
+python3 tests/simple_e2e_test.py
+```
+
+## Testing with docker
+**Start the server** \
+Make sure nvidia-docker2 is installed.
+```bash
+docker run --runtime=nvidia --shm-size=1g --ulimit memlock=-1 -p 8000:8000 -p 8001:8001 -p 8002:8002 --ulimit stack=67108864 -ti nvcr.io/nvidia/tritonserver:22.04-py3
+
+git clone https://github.com/nilay-matroid/matroid-LUPerson-extended.git
+cd matroid-LUPerson-extended
+pip install -r environment/docker_requirements.txt
+
+mkdir luperson_inference/1
+cp luperson_inference/model.py luperson_inference/1/ 
+cp luperson_inference/config.pbtxt luperson_inference/1/ 
+cp -R configs luperson_inference
+
+cd luperson_inference
+gdown 1jiC3gEYdbxd7IKSU5V_4PnNwtsxe99n8
+cd ..
+
+mkdir models
+cp -R luperson_inference  models/
+
+tritonserver --model-repository `pwd`/models
+```
+
+**Start and test using client** 
+```bash
+docker run --runtime=nvidia -ti --net host nvcr.io/nvidia/tritonserver:22.04-py3-sdk /bin/bash
+git clone https://github.com/nilay-matroid/matroid-LUPerson-extended.git
+cd matroid-LUPerson-extended
+cd luperson_inference
+python3 client.py
+```
+**Expected Output**
+```bash
+PASS: luperson_inference
+```

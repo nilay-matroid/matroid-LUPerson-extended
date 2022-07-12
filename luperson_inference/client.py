@@ -40,7 +40,7 @@ with httpclient.InferenceServerClient("localhost:8000") as client:
     gt_query_feat = np.load(gt_query_feat_file, allow_pickle=True)
 
     # Convert to a batched input
-    image_array = image_array.astype(np.float32).unsqueeze(0)
+    image_array = np.expand_dims(image_array.astype(np.float32), 0)
 
     inputs = [
         httpclient.InferInput("INPUT0", image_array.shape,

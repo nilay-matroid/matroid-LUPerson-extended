@@ -6,7 +6,7 @@ MODEL:
     EXTRA_BN: True
   PIXEL_MEAN: [89.896, 79.200, 80.073]
   PIXEL_STD: [63.872, 64.305, 63.839]
-  WEIGHTS: '/home/ubuntu/Nilay/PersonReIDModels/LUPerson-extended/fast-reid/logs/trained_on_last/model_final.pth'
+  WEIGHTS: '../../model_final.pth'
   DEVICE: 'cuda:0'
 
 INPUT:
